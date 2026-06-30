@@ -1,5 +1,6 @@
-import { BrowserRouter, Routes, Route, NavLink } from 'react-router-dom'
+import { BrowserRouter, NavLink } from 'react-router-dom'
 import { Dumbbell, BarChart2, Lightbulb, ClipboardList } from 'lucide-react'
+import AppRoutes from './routes/AppRoutes'
 import './styles/App.css'
 
 function App() {
@@ -31,11 +32,7 @@ function App() {
 
         {/* Main Content */}
         <main className="main">
-          <Routes>
-            <Route path="/" element={<h1 className="page-title">Log Workout</h1>} />
-            <Route path="/history" element={<h1 className="page-title">History</h1>} />
-            <Route path="/suggest" element={<h1 className="page-title">Suggestions</h1>} />
-          </Routes>
+          <AppRoutes />
         </main>
       </div>
     </BrowserRouter>

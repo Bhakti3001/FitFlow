@@ -23,3 +23,10 @@ body {
   background: #333;
   border-radius: 3px;
 }
+
+.page-subtitle {
+  color: #888;
+  font-size: 14px;
+  margin-top: 4px;
+  margin-bottom: 32px;
+}
