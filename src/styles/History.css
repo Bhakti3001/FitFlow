@@ -1,0 +1,99 @@
+.history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 800px;
+}
+
+.workout-card {
+  background: #141414;
+  border: 1px solid #222;
+  border-radius: 12px;
+  padding: 20px 24px;
+  transition: border 0.15s;
+}
+
+.workout-card:hover {
+  border-color: #333;
+}
+
+.workout-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.workout-card-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.muscle-badge {
+  background: #1e1b4b;
+  color: #6366f1;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.workout-date {
+  color: #555;
+  font-size: 13px;
+}
+
+.workout-card-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.exercise-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.exercise-table th {
+  text-align: left;
+  font-size: 11px;
+  color: #555;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 0 0 8px 0;
+  border-bottom: 1px solid #222;
+}
+
+.exercise-table td {
+  padding: 10px 0;
+  font-size: 14px;
+  color: #ccc;
+  border-bottom: 1px solid #1a1a1a;
+}
+
+.exercise-table tr:last-child td {
+  border-bottom: none;
+}
+
+.exercise-name {
+  color: #fff;
+  font-weight: 500;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: #555;
+}
+
+.empty-state h2 {
+  font-size: 18px;
+  margin-bottom: 8px;
+  color: #888;
+}
+
+.empty-state p {
+  font-size: 14px;
+}
