@@ -93,3 +93,47 @@ export function getTotalVolume(workouts, muscleGroup) {
     .flatMap(w => w.exercises)
     .reduce((total, ex) => total + (ex.sets * ex.reps * ex.weight), 0)
 }
+
+// Get progress for each exercise — compare latest vs previous
+export function getExerciseProgress(workouts) {
+  const exerciseMap = {}
+
+  // Sort workouts oldest to newest
+  const sorted = [...workouts].sort((a, b) => new Date(a.date) - new Date(b.date))
+
+  sorted.forEach(workout => {
+    workout.exercises.forEach(ex => {
+      if (!ex.name) return
+      if (!exerciseMap[ex.name]) {
+        exerciseMap[ex.name] = []
+      }
+      exerciseMap[ex.name].push({
+        date: workout.date,
+        weight: Number(ex.weight),
+        sets: Number(ex.sets),
+        reps: Number(ex.reps),
+      })
+    })
+  })
+
+  // Build progress report for each exercise
+  return Object.entries(exerciseMap)
+    .filter(([_, sessions]) => sessions.length >= 1)
+    .map(([name, sessions]) => {
+      const latest = sessions[sessions.length - 1]
+      const previous = sessions.length > 1 ? sessions[sessions.length - 2] : null
+
+      const weightDiff = previous ? latest.weight - previous.weight : 0
+      const trend = !previous ? 'new' : weightDiff > 0 ? 'up' : weightDiff < 0 ? 'down' : 'same'
+
+      return {
+        name,
+        latest,
+        previous,
+        weightDiff,
+        trend,
+        totalSessions: sessions.length,
+      }
+    })
+    .sort((a, b) => a.name.localeCompare(b.name))
+}

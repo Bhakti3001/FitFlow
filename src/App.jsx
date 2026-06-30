@@ -1,5 +1,5 @@
 import { BrowserRouter, NavLink } from 'react-router-dom'
-import { Dumbbell, BarChart2, Lightbulb, ClipboardList } from 'lucide-react'
+import { Dumbbell, BarChart2, Lightbulb, ClipboardList, TrendingUp } from 'lucide-react'
 import AppRoutes from './routes/AppRoutes'
 import './styles/App.css'
 
@@ -22,6 +22,10 @@ function App() {
             <NavLink to="/history" className={({ isActive }) => isActive ? 'nav-item active' : 'nav-item'}>
               <BarChart2 size={20} />
               History
+            </NavLink>
+            <NavLink to="/progress" className={({ isActive }) => isActive ? 'nav-item active' : 'nav-item'}>
+            <TrendingUp size={20} />
+            Progress
             </NavLink>
             <NavLink to="/suggest" className={({ isActive }) => isActive ? 'nav-item active' : 'nav-item'}>
               <Lightbulb size={20} />
