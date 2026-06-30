@@ -1,0 +1,132 @@
+.suggestions-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  max-width: 800px;
+  margin-bottom: 32px;
+}
+
+.suggestion-card {
+  background: #141414;
+  border: 1px solid #222;
+  border-radius: 12px;
+  padding: 20px 24px;
+}
+
+.suggestion-card.highlight {
+  border-color: #6366f1;
+  background: #0d0d1f;
+}
+
+.suggestion-card h3 {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #555;
+  margin-bottom: 12px;
+}
+
+.suggestion-card p {
+  font-size: 15px;
+  color: #ccc;
+  line-height: 1.6;
+}
+
+.suggestion-card .big-text {
+  font-size: 24px;
+  font-weight: 700;
+  color: #6366f1;
+}
+
+.muscle-status-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 800px;
+}
+
+.muscle-status-item {
+  background: #141414;
+  border: 1px solid #222;
+  border-radius: 10px;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.muscle-status-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.status-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.status-dot.ready {
+  background: #22c55e;
+  box-shadow: 0 0 6px #22c55e88;
+}
+
+.status-dot.resting {
+  background: #f59e0b;
+  box-shadow: 0 0 6px #f59e0b88;
+}
+
+.status-dot.never {
+  background: #6366f1;
+  box-shadow: 0 0 6px #6366f188;
+}
+
+.muscle-name {
+  font-size: 15px;
+  font-weight: 500;
+  color: #fff;
+}
+
+.muscle-status-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.status-label {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 20px;
+}
+
+.status-label.ready {
+  background: #052e16;
+  color: #22c55e;
+}
+
+.status-label.resting {
+  background: #1c1003;
+  color: #f59e0b;
+}
+
+.status-label.never {
+  background: #0d0d1f;
+  color: #6366f1;
+}
+
+.days-ago {
+  font-size: 12px;
+  color: #555;
+}
+
+.section-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 12px;
+  margin-top: 28px;
+}
