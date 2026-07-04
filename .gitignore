@@ -28,3 +28,9 @@ dist/
 .DS_Store
 .env
 .vscode/
+
+# .NET
+FitFlowApi/bin/
+FitFlowApi/obj/
+FitFlowApi/*.user
+FitFlowApi/appsettings.Development.json

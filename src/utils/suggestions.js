@@ -94,6 +94,39 @@ export function getTotalVolume(workouts, muscleGroup) {
     .reduce((total, ex) => total + (ex.sets * ex.reps * ex.weight), 0)
 }
 
+// Detect exercises stuck at the same (or falling) weight for 3+ consecutive sessions
+export function getPlateaus(workouts) {
+  const exerciseMap = {}
+
+  const sorted = [...workouts].sort((a, b) => new Date(a.date) - new Date(b.date))
+
+  sorted.forEach(workout => {
+    workout.exercises.forEach(ex => {
+      if (!ex.name) return
+      if (!exerciseMap[ex.name]) exerciseMap[ex.name] = []
+      exerciseMap[ex.name].push({ date: workout.date, weight: Number(ex.weight) })
+    })
+  })
+
+  const PLATEAU_WINDOW = 3
+
+  return Object.entries(exerciseMap)
+    .filter(([_, sessions]) => sessions.length >= PLATEAU_WINDOW)
+    .map(([name, sessions]) => {
+      const recent = sessions.slice(-PLATEAU_WINDOW)
+      const stuck = recent.every(s => s.weight <= recent[0].weight)
+      return {
+        name,
+        stuck,
+        sessionsChecked: PLATEAU_WINDOW,
+        weight: recent[recent.length - 1].weight,
+        lastDate: recent[recent.length - 1].date,
+      }
+    })
+    .filter(p => p.stuck)
+    .sort((a, b) => a.name.localeCompare(b.name))
+}
+
 // Get progress for each exercise — compare latest vs previous
 export function getExerciseProgress(workouts) {
   const exerciseMap = {}

@@ -1,12 +1,13 @@
 import { useWorkouts } from '../context/WorkoutContext'
-import { getSuggestions, getFavoriteMuscle } from '../utils/suggestions'
-import { Lightbulb, Trophy, Flame } from 'lucide-react'
+import { getSuggestions, getFavoriteMuscle, getPlateaus } from '../utils/suggestions'
+import { Lightbulb, Trophy, Flame, AlertTriangle } from 'lucide-react'
 import '../styles/Suggestions.css'
 
 function Suggestions() {
   const { workouts } = useWorkouts()
   const { recommended, reasoning, status } = getSuggestions(workouts)
   const favorite = getFavoriteMuscle(workouts)
+  const plateaus = getPlateaus(workouts)
 
   return (
     <div>
@@ -41,6 +42,17 @@ function Suggestions() {
           <h3><Flame size={12} style={{ marginRight: 4 }} />Recovery Insight</h3>
           <p>{reasoning}</p>
         </div>
+
+        {plateaus.length > 0 && (
+          <div className="suggestion-card" style={{ gridColumn: 'span 2' }}>
+            <h3><AlertTriangle size={12} style={{ marginRight: 4 }} />Plateau Watch</h3>
+            <p>
+              {plateaus.map(p => p.name).join(', ')}{' '}
+              {plateaus.length === 1 ? "hasn't" : "haven't"} increased in weight over the last 3 sessions.
+              Try adding reps, a set, or a small weight bump next time.
+            </p>
+          </div>
+        )}
       </div>
 
       {/* Muscle Status List */}
