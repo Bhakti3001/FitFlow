@@ -15,6 +15,38 @@ function LogWorkout() {
   const [date, setDate] = useState(new Date().toISOString().split('T')[0])
   const [exercises, setExercises] = useState([emptyExercise()])
   const [saved, setSaved] = useState(false)
+  const [errors, setErrors] = useState([])
+
+  // Validate the form; returns an array of error strings (empty = valid)
+  function validate() {
+    const errs = []
+
+    if (!date) errs.push('Date is required.')
+    if (!muscleGroup) errs.push('Muscle group is required.')
+
+    const filled = exercises.filter(ex => ex.name.trim() !== '')
+    if (filled.length === 0) {
+      errs.push('At least one exercise is required.')
+    } else {
+      filled.forEach((ex, i) => {
+        const sets = Number(ex.sets)
+        const reps = Number(ex.reps)
+        const weight = Number(ex.weight)
+
+        if (!ex.sets || sets <= 0 || !Number.isInteger(sets)) {
+          errs.push(`Exercise ${i + 1} (${ex.name}): sets must be a whole number greater than 0.`)
+        }
+        if (!ex.reps || reps <= 0 || !Number.isInteger(reps)) {
+          errs.push(`Exercise ${i + 1} (${ex.name}): reps must be a whole number greater than 0.`)
+        }
+        if (ex.weight === '' || isNaN(weight) || weight < 0) {
+          errs.push(`Exercise ${i + 1} (${ex.name}): weight must be 0 or greater.`)
+        }
+      })
+    }
+
+    return errs
+  }
 
   // Update a specific field in a specific exercise row
   function handleExerciseChange(index, field, value) {
@@ -35,8 +67,14 @@ function LogWorkout() {
 
   // Save the workout
   function handleSave() {
-    if (!muscleGroup || exercises[0].name === '') return
+    const validationErrors = validate()
+    if (validationErrors.length > 0) {
+      setErrors(validationErrors)
+      setSaved(false)
+      return
+    }
 
+    setErrors([])
     addWorkout({
       date,
       muscleGroup,
@@ -108,6 +146,15 @@ function LogWorkout() {
           <Plus size={16} />
           Add Exercise
         </button>
+
+        {/* Validation Errors */}
+        {errors.length > 0 && (
+          <div className="error-list" style={{ marginTop: 12, marginBottom: 4 }}>
+            {errors.map((err, i) => (
+              <p key={i} style={{ color: '#ef4444', fontSize: 13, margin: '4px 0' }}>{err}</p>
+            ))}
+          </div>
+        )}
 
         {/* Save Button */}
         <div className="form-actions">

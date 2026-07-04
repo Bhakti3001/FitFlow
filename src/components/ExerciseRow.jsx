@@ -13,6 +13,8 @@ function ExerciseRow({ exercise, index, onChange, onRemove }) {
         className="input small"
         placeholder="Sets"
         type="number"
+        min="1"
+        step="1"
         value={exercise.sets}
         onChange={e => onChange(index, 'sets', e.target.value)}
       />
@@ -20,6 +22,8 @@ function ExerciseRow({ exercise, index, onChange, onRemove }) {
         className="input small"
         placeholder="Reps"
         type="number"
+        min="1"
+        step="1"
         value={exercise.reps}
         onChange={e => onChange(index, 'reps', e.target.value)}
       />
@@ -27,6 +31,8 @@ function ExerciseRow({ exercise, index, onChange, onRemove }) {
         className="input small"
         placeholder="Weight (lbs)"
         type="number"
+        min="0"
+        step="0.5"
         value={exercise.weight}
         onChange={e => onChange(index, 'weight', e.target.value)}
       />

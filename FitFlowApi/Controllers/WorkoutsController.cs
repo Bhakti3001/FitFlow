@@ -58,6 +58,11 @@ namespace FitFlowApi.Controllers
         [HttpPost]
         public ActionResult<Workout> Create([FromBody] Workout workout)
         {
+            if (!ModelState.IsValid)
+            {
+                return ValidationProblem(ModelState);
+            }
+
             workout.Id = _nextId++;
             _workouts.Add(workout);
             return CreatedAtAction(nameof(GetAll), new { id = workout.Id }, workout);
