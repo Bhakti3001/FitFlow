@@ -4,14 +4,6 @@ A smart workout planner and tracker — built for the Root16 Round 3 technical i
 
 Log workouts, view history, get recovery/plateau-based training suggestions, and track progress per exercise.
 
-## Screenshots
-
-<!-- Add screenshots here, e.g.: -->
-<!-- ![Log Workout](screenshots/log-workout.png) -->
-<!-- ![History](screenshots/history.png) -->
-<!-- ![Suggestions](screenshots/suggestions.png) -->
-<!-- ![Progress](screenshots/progress.png) -->
-
 ## Tech Stack
 
 - **Frontend:** React (Vite), React Router, React Context
